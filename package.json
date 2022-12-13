@@ -1,0 +1,11 @@
+{
+  "name": "typescript-competitive-programming",
+  "version": "1.0.0",
+  "description": "Solving competitive programming tasks (Algorithms, Arrays, String and so on)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Phazerous",
+  "license": "ISC"
+}
