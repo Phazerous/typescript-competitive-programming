@@ -1,28 +1,29 @@
 "use strict";
-const numberOfStepsSimple = (num) => {
-    let steps = 0;
-    while (num) {
-        if (num % 2 == 0) {
-            num /= 2;
-        }
-        else {
-            num -= 1;
-        }
-        steps += 1;
+class ListNode {
+    constructor(val, next) {
+        this.val = val === undefined ? 0 : val;
+        this.next = next === undefined ? null : next;
     }
-    return steps;
-};
-// BIT OPERATORS
-const numberOfSteps = (num) => {
-    let steps = 0;
-    while (num) {
-        if ((num & 1) === 0) {
-            num = num >> 1;
-        }
-        else {
-            num--;
-        }
-        steps++;
+}
+// function middleNode(head: ListNode): ListNode {
+//   let count = 1;
+//   let current = head;
+//   while (current.next) {
+//     count += 1;
+//     current = current.next;
+//   }
+//   current = head;
+//   for (let i = 1; i < Math.floor(count / 2) + 1; i++) {
+//     current = current.next!;
+//   }
+//   return current;
+// }
+const middleNode = (head) => {
+    let slow = head;
+    let fast = head;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
-    return steps;
+    return slow;
 };
