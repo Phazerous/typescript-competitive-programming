@@ -1,23 +1,18 @@
-const romanToInt = (str: string): number => {
-  const rep: { [key: string]: number } = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
-  };
+const fizzBuzz = (n: number): string[] => {
+  let res: string[] = [];
 
-  let sum = 0;
-
-  for (let i = 0; i < str.length; i++) {
-    if (i + 1 < str.length && rep[str[i]] < rep[str[i + 1]]) {
-      sum -= rep[str[i]];
+  for (let i = 1; i < n + 1; i++) {
+    if (i % 3 == 0 && i % 5 == 0) res.push('FizzBuzz');
+    else if (i % 3 == 0) {
+      res.push('Fizz');
+    } else if (i % 5 == 0) {
+      res.push('Buzz');
     } else {
-      sum += rep[str[i]];
+      res.push(`${i}`);
     }
   }
 
-  return sum;
+  return res;
 };
+
+console.log(fizzBuzz(15));
