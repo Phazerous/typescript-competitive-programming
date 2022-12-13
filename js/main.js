@@ -1,19 +1,28 @@
 "use strict";
-const fizzBuzz = (n) => {
-    let res = [];
-    for (let i = 1; i < n + 1; i++) {
-        if (i % 3 == 0 && i % 5 == 0)
-            res.push('FizzBuzz');
-        else if (i % 3 == 0) {
-            res.push('Fizz');
-        }
-        else if (i % 5 == 0) {
-            res.push('Buzz');
+const numberOfStepsSimple = (num) => {
+    let steps = 0;
+    while (num) {
+        if (num % 2 == 0) {
+            num /= 2;
         }
         else {
-            res.push(`${i}`);
+            num -= 1;
         }
+        steps += 1;
     }
-    return res;
+    return steps;
 };
-console.log(fizzBuzz(15));
+// BIT OPERATORS
+const numberOfSteps = (num) => {
+    let steps = 0;
+    while (num) {
+        if ((num & 1) === 0) {
+            num = num >> 1;
+        }
+        else {
+            num--;
+        }
+        steps++;
+    }
+    return steps;
+};
