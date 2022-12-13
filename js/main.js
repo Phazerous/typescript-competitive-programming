@@ -1,46 +1,22 @@
 "use strict";
 const romanToInt = (str) => {
-    let sum = 0;
-    const sl = {
-        IV: 4,
-        IX: 9,
-        XL: 40,
-        XC: 90,
-        CD: 400,
-        CM: 900,
+    const rep = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
     };
-    for (const key in sl) {
-        console.log(key);
-        if (str.includes(key)) {
-            str = str.replace(key, '');
-            sum += sl[key];
+    let sum = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (i + 1 < str.length && rep[str[i]] < rep[str[i + 1]]) {
+            sum -= rep[str[i]];
         }
-    }
-    for (const char of str) {
-        switch (char) {
-            case 'I':
-                sum += 1;
-                break;
-            case 'V':
-                sum += 5;
-                break;
-            case 'X':
-                sum += 10;
-                break;
-            case 'L':
-                sum += 50;
-                break;
-            case 'C':
-                sum += 100;
-                break;
-            case 'D':
-                sum += 500;
-                break;
-            case 'M':
-                sum += 1000;
-                break;
+        else {
+            sum += rep[str[i]];
         }
     }
     return sum;
 };
-console.log(romanToInt('DCXXI'));
