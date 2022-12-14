@@ -1,38 +1,49 @@
-class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
+//  <<<=== MAP ===>>>
+//
+// const canConstruct = (ransomNote: string, magazine: string): boolean => {
+//   const dict = new Map();
 
-// function middleNode(head: ListNode): ListNode {
-//   let count = 1;
-//   let current = head;
-
-//   while (current.next) {
-//     count += 1;
-//     current = current.next;
+//   for (const char of magazine) {
+//     if (dict.has(char)) {
+//       dict.set(char, dict.get(char) + 1);
+//     } else {
+//       dict.set(char, 1);
+//     }
 //   }
 
-//   current = head;
+//   let result = true;
 
-//   for (let i = 1; i < Math.floor(count / 2) + 1; i++) {
-//     current = current.next!;
+//   for (const char of ransomNote) {
+//     console.log(dict.has(char));
+
+//     if (!dict.has(char)) {
+//       result = false;
+//       break;
+//     } else {
+//       const chr = dict.get(char);
+//       if (chr === 1) {
+//         dict.delete(char);
+//       } else {
+//         dict.set(char, chr - 1);
+//       }
+//     }
 //   }
 
-//   return current;
-// }
+//   return result;
+// };
 
-const middleNode = (head: ListNode): ListNode => {
-  let slow = head;
-  let fast = head;
+// <<<=== ARRAY + ASCII ===>>>
 
-  while (fast && fast.next) {
-    slow = slow.next!;
-    fast = fast.next!.next!;
+const canConstruct = (ransomNote: string, magazine: string): boolean => {
+  const alphabet = Array(26).fill(0);
+
+  for (let i = 0; i < magazine.length; i++) {
+    alphabet[magazine.charCodeAt(i) - 97] += 1;
   }
 
-  return slow;
+  for (let i = 0; i < ransomNote.length; i++) {
+    if (--alphabet[ransomNote.charCodeAt(i) - 97] < 0) return false;
+  }
+
+  return true;
 };
